@@ -11,13 +11,11 @@ export default function Home() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.items.items);
 
-  // Load items from localStorage on initial render
   useEffect(() => {
     const storedItems = JSON.parse(localStorage.getItem("items")) || [];
     dispatch(loadItems(storedItems));
   }, [dispatch]);
 
-  // Save items to localStorage whenever items change
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
